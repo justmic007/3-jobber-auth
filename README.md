@@ -9,7 +9,7 @@ Then it's in the API gateway that we are going to save the JWT token in the cook
 This authentication service have some features. These features are `authentication` feature and a `search` feature.
 
 ##### Auth Service Features
-![alt text](auth-service-features.png)
+![alt text](auth-service-architecture.png)
 
 
 Now the other feature is going to be the search feature.
