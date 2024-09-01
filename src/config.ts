@@ -14,8 +14,8 @@ class Config {
   public CLOUD_API_SECRET: string | undefined;
   public RABBITMQ_ENDPOINT: string | undefined;
   public ELASTIC_SEARCH_URL: string | undefined;
-  public ELASTIC_APM_SERVER_URL: string | undefined;
-  public ELASTIC_APM_SECRET_TOKEN: string | undefined;
+  // public ELASTIC_APM_SERVER_URL: string | undefined;
+  // public ELASTIC_APM_SECRET_TOKEN: string | undefined;
 
   constructor(){
     this.NODE_ENV = process.env.NODE_ENV || '';
@@ -29,8 +29,8 @@ class Config {
     this.CLOUD_API_SECRET = process.env.CLOUD_API_SECRET || '';
     this.RABBITMQ_ENDPOINT = process.env.RABBITMQ_ENDPOINT || '';
     this.ELASTIC_SEARCH_URL = process.env.ELASTIC_SEARCH_URL || '';
-    this.ELASTIC_APM_SERVER_URL = process.env.ELASTIC_APM_SERVER_URL || '';
-    this.ELASTIC_APM_SECRET_TOKEN = process.env.ELASTIC_APM_SECRET_TOKEN || '';
+  //   this.ELASTIC_APM_SERVER_URL = process.env.ELASTIC_APM_SERVER_URL || '';
+  //   this.ELASTIC_APM_SECRET_TOKEN = process.env.ELASTIC_APM_SECRET_TOKEN || '';
   }
 }
 
