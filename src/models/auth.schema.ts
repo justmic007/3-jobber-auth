@@ -5,9 +5,16 @@ import { DataTypes, Model, ModelDefined, Optional } from 'sequelize';
 
 const SALT_ROUND = 10;
 
+interface AuthModelInstanceMethods extends Model {
+  prototype: {
+    comparePassword: (password: string, hashedPassword: string) => Promise<boolean>
+    hashedPassword: (password: string) => Promise<string>
+  }
+}
+
 type AuthUserCreationAttributes = Optional<IAuthDocument, 'id' | 'createdAt' | 'passwordResetToken' | 'passwordResetExpires'>
 
-const AuthModel: ModelDefined<IAuthDocument, AuthUserCreationAttributes> = sequelize.define('auths', {
+const AuthModel: ModelDefined<IAuthDocument, AuthUserCreationAttributes> & AuthModelInstanceMethods = sequelize.define('auths', {
   username: {
     type: DataTypes.STRING,
     allowNull: false
@@ -65,16 +72,19 @@ const AuthModel: ModelDefined<IAuthDocument, AuthUserCreationAttributes> = seque
       fields: ['username']
     }
   ]
-});
+}) as ModelDefined<IAuthDocument, AuthUserCreationAttributes> & AuthModelInstanceMethods;
 
 AuthModel.addHook('beforeCreate', async (auth: Model) => {
   const hashedPassword: string = await hash(auth.dataValues.password as string, SALT_ROUND);
   auth.dataValues.password = hashedPassword;
 });
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-(AuthModel.prototype as any).comparePassword = async function (password: string, hashedPassword: string): Promise<boolean> {
+AuthModel.prototype.comparePassword = async function (password: string, hashedPassword: string): Promise<boolean> {
   return compare(password, hashedPassword);
+};
+
+AuthModel.prototype.hashedPassword = async function (password: string): Promise<string> {
+  return hash(password, SALT_ROUND);
 };
 
 AuthModel.sync({}); // with {force: true}, it always deletes the table when there is a server restart
