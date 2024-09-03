@@ -17,3 +17,8 @@ Now the other feature is going to be the search feature.
 For the search, users are able to search for `gigs` even though they are not authenticated. When users search for `gigs`, they are not able to purchase any gig until they authenticated, but they are able to search for gigs.
 
 **Note:** that the gigs that users create are stored/saved to `Elasticsearch` and also to `MongoDB`. So the search for retrieving data(gigs), are **ONLY** from `Elasticsearch` ie the search service would be to retrieve/get data from `Elasticsearch`.
+
+
+## See Auth Inter-process Communication
+
+![alt text](auth-interprocess-communication.png)
