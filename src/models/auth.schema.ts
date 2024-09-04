@@ -70,6 +70,14 @@ const AuthModel: ModelDefined<IAuthDocument, AuthUserCreationAttributes> & AuthM
     {
       unique: true,
       fields: ['username']
+    },
+    {
+      unique: true,
+      fields: ['emailVerificationToken']
+    },
+    {
+      unique: true,
+      fields: ['passwordResetToken']
     }
   ]
 }) as ModelDefined<IAuthDocument, AuthUserCreationAttributes> & AuthModelInstanceMethods;

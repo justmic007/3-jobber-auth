@@ -23,6 +23,6 @@ export async function publishDirectMessage(
     channel.publish(exchangeName, routingKey, Buffer.from(message))
     log.info(logMessage)
   } catch (error) {
-    log.log('error', 'AuthService Producer publishDrirectMessages() method error:', error)
+    log.log('error', 'AuthService Producer publishDirectMessage() method error:', error)
   }
 }

@@ -22,3 +22,7 @@ For the search, users are able to search for `gigs` even though they are not aut
 ## See Auth Inter-process Communication
 
 ![alt text](auth-interprocess-communication.png)
+
+
+## Auth Service API Endpoints
+![alt text](auth-service-api-endpoints.png)
