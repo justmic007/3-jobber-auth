@@ -1,4 +1,5 @@
 import dotenv from 'dotenv';
+import cloudinary from 'cloudinary';
 
 dotenv.config({});
 
@@ -17,7 +18,7 @@ class Config {
   // public ELASTIC_APM_SERVER_URL: string | undefined;
   // public ELASTIC_APM_SECRET_TOKEN: string | undefined;
 
-  constructor(){
+  constructor() {
     this.NODE_ENV = process.env.NODE_ENV || '';
     this.CLIENT_URL = process.env.CLIENT_URL || '';
     this.GATEWAY_JWT_TOKEN = process.env.GATEWAY_JWT_TOKEN || '';
@@ -29,8 +30,15 @@ class Config {
     this.CLOUD_API_SECRET = process.env.CLOUD_API_SECRET || '';
     this.RABBITMQ_ENDPOINT = process.env.RABBITMQ_ENDPOINT || '';
     this.ELASTIC_SEARCH_URL = process.env.ELASTIC_SEARCH_URL || '';
-  //   this.ELASTIC_APM_SERVER_URL = process.env.ELASTIC_APM_SERVER_URL || '';
-  //   this.ELASTIC_APM_SECRET_TOKEN = process.env.ELASTIC_APM_SECRET_TOKEN || '';
+    //   this.ELASTIC_APM_SERVER_URL = process.env.ELASTIC_APM_SERVER_URL || '';
+    //   this.ELASTIC_APM_SECRET_TOKEN = process.env.ELASTIC_APM_SECRET_TOKEN || '';
+  }
+  public cloudinaryConfig(): void {
+    cloudinary.v2.config({
+      cloud_name: this.CLOUD_NAME,
+      api_key: this.CLOUD_API_KEY,
+      api_secret: this.CLOUD_API_SECRET
+    });
   }
 }
 

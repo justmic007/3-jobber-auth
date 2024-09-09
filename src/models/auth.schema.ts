@@ -1,6 +1,6 @@
 import { sequelize } from '@auth/database';
 import { IAuthDocument } from '@justmic007/9-jobber-shared';
-import { compare, hash } from 'bcrypt';
+import { compare, hash } from 'bcryptjs';
 import { DataTypes, Model, ModelDefined, Optional } from 'sequelize';
 
 const SALT_ROUND = 10;
@@ -70,6 +70,14 @@ const AuthModel: ModelDefined<IAuthDocument, AuthUserCreationAttributes> & AuthM
     {
       unique: true,
       fields: ['username']
+    },
+    {
+      unique: true,
+      fields: ['emailVerificationToken']
+    },
+    {
+      unique: true,
+      fields: ['passwordResetToken']
     }
   ]
 }) as ModelDefined<IAuthDocument, AuthUserCreationAttributes> & AuthModelInstanceMethods;
