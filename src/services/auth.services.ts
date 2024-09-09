@@ -8,6 +8,8 @@ import { lowerCase, omit } from 'lodash';
 import { Model, Op } from 'sequelize';
 
 export async function createAuthUser(data: IAuthDocument): Promise<IAuthDocument> {
+  console.log('!!!!!!!!!!!!!!!! data', data);
+
   const result: Model = await AuthModel.create(data); // Create user in the database
   const messageDetails: IAuthBuyerMessageDetails = {
     username: result.dataValues.username!,
@@ -125,7 +127,7 @@ export async function updatePassword(authId: number, password: string): Promise<
   );
 }
 
-export async function signToken(id: number, email: string, username: string): string {
+export async function signToken(id: number, email: string, username: string): Promise<string> {
   return sign(
     {
       id,

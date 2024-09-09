@@ -14,6 +14,10 @@ import { StatusCodes } from 'http-status-codes';
 
 
 export async function create(req: Request, res: Response): Promise<void> {
+  console.log('create - i am here');
+  console.log('create - req.body', req.body);
+
+
   const { error } = await Promise.resolve(signupSchema.validate(req.body));
   if (error?.details) {
     throw new BadRequestError(error.details[0].message, ' Signup create() method error');
@@ -59,6 +63,6 @@ export async function create(req: Request, res: Response): Promise<void> {
     'Verify email message has been sent to notification service.'
   );
 
-  const userJWT: string = signToken(result.id!, result.email!, result.username!)
+  const userJWT: string = await signToken(result.id!, result.email!, result.username!)
   res.status(StatusCodes.CREATED).json({ message: 'User created successfully', user: result, token: userJWT })
 }

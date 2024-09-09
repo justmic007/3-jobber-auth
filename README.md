@@ -26,3 +26,11 @@ For the search, users are able to search for `gigs` even though they are not aut
 
 ## Auth Service API Endpoints
 ![alt text](auth-service-api-endpoints.png)
+
+### Start Service locally
+
+`cd volumes`
+
+run `docker compose up elasticsearch rabbitmq kibana mysql gateway auth`
+
+OR after starting the services in docker, run `npm run dev` in `auth` service
